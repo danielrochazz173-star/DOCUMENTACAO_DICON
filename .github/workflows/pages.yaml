@@ -30,7 +30,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.123.7"
+          hugo-version: "0.146.3"
           extended: true
       - name: Cache Hugo resources
         uses: actions/cache@v4
