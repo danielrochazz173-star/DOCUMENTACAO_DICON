@@ -14,12 +14,14 @@ Esta página consolida os padrões de cálculo e filtros usados nas análises de
 
 ## Tabelas e views principais
 
-- `PCPEDC` (cabeçalho dos pedidos)
-- `PCPEDI` (itens dos pedidos)
-- `PCUSUARI` (vendedores)
-- `PCPRODUT` (produtos)
-- `PCDEPTO` (departamentos)
-- `VIEW_DEVOL_RESUMO_FATURAMENTO` (devoluções com custo correto)
+| Tabela / View | Uso no faturamento |
+|---------------|---------------------|
+| **PCPEDC** | Cabeçalho do pedido. JOIN com PCPEDI por `NUMPED`. Filtros: DATA, POSICAO, DTCANCEL, CONDVENDA, CODFILIAL. |
+| **PCPEDI** | Itens do pedido. Traz CODPROD, QT, PVENDA, VLCUSTOFIN, BONIFIC. |
+| **PCUSUARI** | Vendedor (CODUSUR). Usado para filtrar por CODSUPERVISOR. |
+| **PCPRODUT** | Dados do produto (para listar descrição, departamento). |
+| **PCDEPTO** | Departamento (quando precisar agrupar por setor). |
+| **VIEW_DEVOL_RESUMO_FATURAMENTO** | Devoluções com valor e custo. JOIN por CODPROD (e opcionalmente CODUSUR). Campos: VLDEVOLUCAO, VLCUSTOFIN, DTENT. |
 
 ## Filtros de negócio obrigatórios
 

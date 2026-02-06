@@ -4,6 +4,8 @@ title: Faturamento Líquido (Base de Cálculo)
 
 Base oficial para faturamento líquido. Este padrão é usado nos scripts de produtos e relatórios comparativos.
 
+**Tabelas e JOINs:** `PCPEDC` (cabeçalho) → `JOIN PCPEDI ON NUMPED` (itens) → `JOIN PCUSUARI ON CODUSUR` (vendedor/supervisor). Devoluções vêm de `VIEW_DEVOL_RESUMO_FATURAMENTO`; o match com vendas é por `CODPROD`. Ver [JOINs e tabelas](/docs/sql/joins-e-tabelas-winthor/) e [Padrões e filtros](/docs/sql/padroes-e-filtros/).
+
 ## Fórmulas oficiais
 
 - Faturamento bruto: `QT * PVENDA`

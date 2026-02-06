@@ -30,4 +30,9 @@ cascade:
 - **[Positivação por produto](sql/compras/positivacao-produto/)**
 - **[Comparativo compra x venda](sql/compras/compra-venda/)**
 
+## Conceitos (TI / desenvolvedores)
+
+- **[JOINs e tabelas Winthor](sql/joins-e-tabelas-winthor/)** – Mapa das tabelas (PCPEDC, PCPEDI, PCEST, etc.) e como fazer os JOINs
+- **[Padrões e filtros de negócio](sql/padroes-e-filtros/)** – Filtros de pedido, NVL, DECODE, datas, CTE
+
 Use a **busca** no topo para achar rápido o que precisar.

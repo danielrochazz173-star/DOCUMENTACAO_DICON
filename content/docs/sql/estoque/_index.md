@@ -15,6 +15,10 @@ Consultas e padrões para puxar estoque no Winthor (Oracle) de várias formas: p
 
 ## Tabelas principais
 
-- `PCEST` – estoque por produto/filial (QTESTGER, QTRESERV, QTBLOQUEADA)
-- `PCPRODUT` – produto (QTUNITCX, PESOLIQ, CODEPTO, CODFAB, CODCATEGORIA)
-- `PCDEPTO` – departamento
+| Tabela | Chave | Uso |
+|--------|--------|-----|
+| **PCEST** | CODPROD + CODFILIAL | Estoque: QTESTGER, QTRESERV, QTBLOQUEADA. Sempre filtrar CODFILIAL (ex.: '1'). |
+| **PCPRODUT** | CODPROD | Produto: QTUNITCX, PESOLIQ, CODEPTO, CODFAB, CODAUXILIAR (EAN), CODCATEGORIA. JOIN com PCEST por CODPROD (e CODFILIAL). |
+| **PCDEPTO** | CODEPTO | Departamento. JOIN a partir de PCPRODUT.CODEPTO. |
+
+Estoque em caixas: `(QTESTGER - QTRESERV - QTBLOQUEADA) / NULLIF(QTUNITCX, 1)`. Ver [Regra de estoque em caixas](estoque-regra-caixas/) e [JOINs e tabelas](/docs/sql/joins-e-tabelas-winthor/).
