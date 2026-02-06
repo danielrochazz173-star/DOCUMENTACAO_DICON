@@ -6,10 +6,10 @@ Consultas, procedures e exemplos SQL usados na DICON.
 
 ## Páginas
 
-- [Consultas úteis](consultas-uteis/)
-- [Procedures e funções](procedures/)
-- [Conexão Oracle e ambiente](oracle-conexao/)
-- [Faturamento (estrutura completa)](faturamento/)
-- [Compras (estrutura completa)](compras/)
-- [Campanhas (Camil)](campanhas/)
-- [Estoque](estoque/)
+- [Consultas úteis]({{< relref "sql/consultas-uteis/index.md" >}})
+- [Procedures e funções]({{< relref "sql/procedures/index.md" >}})
+- [Conexão Oracle e ambiente]({{< relref "sql/oracle-conexao/index.md" >}})
+- [Faturamento (estrutura completa)]({{< relref "sql/faturamento/index.md" >}})
+- [Compras (estrutura completa)]({{< relref "sql/compras/index.md" >}})
+- [Campanhas (Camil)]({{< relref "sql/campanhas/index.md" >}})
+- [Estoque]({{< relref "sql/estoque/index.md" >}})
