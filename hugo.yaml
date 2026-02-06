@@ -39,18 +39,21 @@ menu:
     - name: Compras
       pageRef: /docs/sql/compras/
       weight: 4
+    - name: Pedidos
+      pageRef: /docs/sql/pedidos/
+      weight: 5
     - name: Campanhas
       pageRef: /docs/sql/campanhas/
-      weight: 5
+      weight: 6
     - name: Estoque
       pageRef: /docs/sql/estoque/
-      weight: 6
-    - name: Buscar
       weight: 7
+    - name: Buscar
+      weight: 8
       params:
         type: search
     - name: RSS
-      weight: 8
+      weight: 9
       url: "/index.xml"
       params:
         icon: rss

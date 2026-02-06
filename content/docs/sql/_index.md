@@ -15,6 +15,7 @@ Consultas, procedures e exemplos SQL usados na DICON (Winthor/Oracle). Use as p�
 - [Procedures e funções](procedures/)
 - [Conexão Oracle e ambiente](oracle-conexao/)
 - [Faturamento (estrutura completa)](faturamento/)
+- [Pedidos](pedidos/) – Listar pedidos (cabeçalho e resumo), itens do pedido, por cliente/vendedor/produto
 - [Compras (estrutura completa)](compras/)
 - [Campanhas (Camil)](campanhas/)
 - [Estoque](estoque/)

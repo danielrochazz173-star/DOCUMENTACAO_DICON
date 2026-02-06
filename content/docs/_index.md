@@ -11,6 +11,7 @@ cascade:
 - **[Conexão Oracle e Ambiente](sql/oracle-conexao/)** – Padrão de conexão e configuração segura
 - **[Faturamento](sql/faturamento/)** – Cálculo completo, margem, devoluções, vendedores, clientes e departamentos
 - **[Compras](sql/compras/)** – Compras por produto e departamento, positivação e compra x venda
+- **[Pedidos](sql/pedidos/)** – Listar pedidos, itens, por cliente/vendedor/produto
 - **[Campanhas](sql/campanhas/)** – Queries usadas no sistema Camil
 - **[Estoque](sql/estoque/)** – Estoque por CODFAB, categoria, departamento, Oracle+Vilog (KG), exportar produtos
 
