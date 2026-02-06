@@ -1,0 +1,46 @@
+---
+title: Vendas e Base de Cálculo
+---
+
+Query usada nas campanhas para buscar vendas de produtos elegíveis no período.
+
+## Query base
+
+```sql
+SELECT
+    C.CODUSUR,
+    U.NOME AS NOME_VENDEDOR,
+    U.CODSUPERVISOR,
+    S.NOME AS NOME_SUPERVISOR,
+    C.CODCLI,
+    CL.CLIENTE AS NOME_CLIENTE,
+    I.CODPROD,
+    P.DESCRICAO AS DESCRICAO_PRODUTO,
+    P.EMBALAGEM,
+    P.QTUNITCX,
+    C.DATA AS DATA_VENDA,
+    I.QT AS QUANTIDADE,
+    ROUND(I.QT / NVL(P.QTUNITCX, 1), 2) AS QT_CAIXAS,
+    ROUND(I.QT * I.PVENDA, 2) AS VALOR_FATURAMENTO,
+    ROUND(I.QT * I.VLCUSTOFIN, 2) AS CUSTO_FATURAMENTO
+FROM PCPEDC C
+JOIN PCPEDI I ON C.NUMPED = I.NUMPED
+JOIN PCPRODUT P ON I.CODPROD = P.CODPROD
+JOIN PCUSUARI U ON C.CODUSUR = U.CODUSUR
+LEFT JOIN PCSUPERV S ON U.CODSUPERVISOR = S.CODSUPERVISOR
+LEFT JOIN PCCLIENT CL ON C.CODCLI = CL.CODCLI
+WHERE C.DATA BETWEEN TO_DATE(:data_inicio, 'DD/MM/YYYY')
+  AND TO_DATE(:data_fim, 'DD/MM/YYYY')
+  AND C.CODFILIAL IN (:filiais)
+  AND C.POSICAO = :posicao
+  AND C.DTCANCEL IS NULL
+  AND C.CONDVENDA NOT IN (:condicoes_excluidas)
+  AND NVL(I.BONIFIC, 'N') = 'N'
+  AND I.CODPROD IN (:produtos)
+ORDER BY C.DATA DESC, C.CODUSUR, I.CODPROD
+```
+
+## Observações
+
+- A contagem de positivação é feita por mês no processamento
+- Quantidade em caixas usa `QT / QTUNITCX`

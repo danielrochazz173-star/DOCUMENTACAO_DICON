@@ -1,0 +1,58 @@
+---
+title: Positivação por Produto
+---
+
+Positivação = quantidade de clientes únicos que compraram cada produto no período.
+
+## Query base
+
+```sql
+WITH VENDAS_PRODUTO AS (
+    SELECT
+        P.CODPROD,
+        P.DESCRICAO AS PRODUTO,
+        D.DESCRICAO AS DEPARTAMENTO,
+        SUM(NVL(M.QT, 0)) AS QUANTIDADE,
+        SUM(NVL(M.QT, 0) * NVL(M.PUNIT, 0)) AS VALOR_TOTAL
+    FROM PCNFENT N
+    JOIN PCMOV M ON N.NUMTRANSENT = M.NUMTRANSENT AND M.CODOPER = 'E'
+    JOIN PCPRODUT P ON M.CODPROD = P.CODPROD
+    JOIN PCDEPTO D ON P.CODEPTO = D.CODEPTO
+    WHERE N.DTENT >= :data_inicio
+      AND N.DTENT < :data_fim
+      AND D.DESCRICAO IS NOT NULL
+    GROUP BY P.CODPROD, P.DESCRICAO, D.DESCRICAO
+),
+POSITIVACAO_PRODUTO AS (
+    SELECT
+        I.CODPROD,
+        COUNT(DISTINCT C.CODCLI) AS POSITIVACAO
+    FROM PCPEDC C
+    JOIN PCPEDI I ON C.NUMPED = I.NUMPED
+    JOIN PCPRODUT P ON I.CODPROD = P.CODPROD
+    JOIN PCDEPTO D ON P.CODEPTO = D.CODEPTO
+    WHERE C.DATA >= :data_inicio
+      AND C.DATA < :data_fim
+      AND C.CODFILIAL IN ('1', '98')
+      AND C.POSICAO = 'F'
+      AND C.DTCANCEL IS NULL
+      AND C.CONDVENDA NOT IN (4, 8, 10, 13, 20, 98, 99)
+      AND NVL(I.BONIFIC, 'N') = 'N'
+    GROUP BY I.CODPROD
+)
+SELECT
+    V.CODPROD,
+    V.PRODUTO,
+    V.DEPARTAMENTO,
+    V.QUANTIDADE,
+    V.VALOR_TOTAL,
+    NVL(P.POSITIVACAO, 0) AS POSITIVACAO
+FROM VENDAS_PRODUTO V
+LEFT JOIN POSITIVACAO_PRODUTO P ON V.CODPROD = P.CODPROD
+ORDER BY V.VALOR_TOTAL DESC
+```
+
+## Observações
+
+- Positivação é por cliente único no período
+- Mesma regra de filtros do faturamento

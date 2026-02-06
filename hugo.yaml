@@ -30,21 +30,27 @@ menu:
     - name: Início
       pageRef: /
       weight: 1
-    - name: SQL
-      pageRef: /sql/
+    - name: Oracle
+      pageRef: /sql/oracle-conexao/
       weight: 2
-    - name: Python
-      pageRef: /python/
+    - name: Faturamento
+      pageRef: /sql/faturamento/
       weight: 3
-    - name: Snippets
-      pageRef: /snippets/
+    - name: Compras
+      pageRef: /sql/compras/
       weight: 4
-    - name: Buscar
+    - name: Campanhas
+      pageRef: /sql/campanhas/
       weight: 5
+    - name: Estoque
+      pageRef: /sql/estoque/
+      weight: 6
+    - name: Buscar
+      weight: 7
       params:
         type: search
     - name: RSS
-      weight: 6
+      weight: 8
       url: "/index.xml"
       params:
         icon: rss
