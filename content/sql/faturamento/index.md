@@ -6,9 +6,9 @@ Esta seção consolida todas as regras e consultas SQL usadas nas análises de f
 
 ## Páginas
 
-- [Faturamento líquido (base de cálculo)]({{< relref "sql/faturamento/faturamento-liquido/index.md" >}})
-- [Margem e preço ideal]({{< relref "sql/faturamento/margem-preco/index.md" >}})
-- [Devoluções (view oficial)]({{< relref "sql/faturamento/devolucoes/index.md" >}})
-- [Faturamento por vendedor]({{< relref "sql/faturamento/vendedores/index.md" >}})
-- [Faturamento por cliente]({{< relref "sql/faturamento/clientes/index.md" >}})
-- [Faturamento por departamento]({{< relref "sql/faturamento/departamentos/index.md" >}})
+- [Faturamento líquido (base de cálculo)]({{< relref "sql/faturamento/faturamento-liquido" >}})
+- [Margem e preço ideal]({{< relref "sql/faturamento/margem-preco" >}})
+- [Devoluções (view oficial)]({{< relref "sql/faturamento/devolucoes" >}})
+- [Faturamento por vendedor]({{< relref "sql/faturamento/vendedores" >}})
+- [Faturamento por cliente]({{< relref "sql/faturamento/clientes" >}})
+- [Faturamento por departamento]({{< relref "sql/faturamento/departamentos" >}})
