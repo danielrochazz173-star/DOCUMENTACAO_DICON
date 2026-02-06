@@ -12,7 +12,7 @@ cascade:
 - **[Faturamento](sql/faturamento/)** – Cálculo completo, margem, devoluções, vendedores, clientes e departamentos
 - **[Compras](sql/compras/)** – Compras por produto e departamento, positivação e compra x venda
 - **[Campanhas](sql/campanhas/)** – Queries usadas no sistema Camil
-- **[Estoque](sql/estoque/)** – Cálculo de estoque em caixas e filtros por categoria
+- **[Estoque](sql/estoque/)** – Estoque por CODFAB, categoria, departamento, Oracle+Vilog (KG), exportar produtos; scripts Python (BEMBRASIL, Excel, app)
 
 ## Acessos rápidos (Faturamento)
 

@@ -1,38 +1,10 @@
 ---
-title: Estoque (PCEST)
+title: Estoque por categoria
 ---
 
-Consulta padrão para estoque em caixas e informações de produto.
+Estoque em caixas por categoria de produto (ex.: congelado 100, resfriado 101).
 
-## Estoque por CODFAB (com departamento e EAN)
-
-```sql
-SELECT
-    P.CODPROD,
-    P.DESCRICAO,
-    P.CODFAB,
-    P.CODAUXILIAR AS EAN,
-    P.EMBALAGEM,
-    P.PESOLIQ,
-    P.QTUNITCX,
-    D.DESCRICAO AS DEPARTAMENTO,
-    D.CODEPTO,
-    COALESCE(
-        (E.QTESTGER - E.QTRESERV - E.QTBLOQUEADA) / NULLIF(P.QTUNITCX, 1),
-        (E.QTESTGER - E.QTRESERV - E.QTBLOQUEADA),
-        0
-    ) AS ESTOQUE_CX
-FROM PCPRODUT P
-LEFT JOIN PCDEPTO D ON P.CODEPTO = D.CODEPTO
-LEFT JOIN PCEST E ON P.CODPROD = E.CODPROD AND E.CODFILIAL = '1'
-WHERE P.CODFAB = :codfab
-  AND P.DTEXCLUSAO IS NULL
-  AND (P.OBS2 <> 'FL' OR P.OBS2 IS NULL)
-  AND P.REVENDA = 'S'
-ORDER BY P.DESCRICAO
-```
-
-## Estoque por categoria (100/101)
+## Query
 
 ```sql
 SELECT
@@ -64,8 +36,8 @@ WHERE (P.CODCATEGORIA IN (:lista_categorias) OR P.CODCATEGORIA IS NULL)
 ORDER BY D.DESCRICAO, P.DESCRICAO
 ```
 
-## Regra de estoque em caixas
+## Categorias comuns
 
-```
-ESTOQUE_CX = (QTESTGER - QTRESERV - QTBLOQUEADA) / QTUNITCX
-```
+- **100** – CONGELADO
+- **101** – RESFRIADO
+- Outras – usar `PCCATEGORIA` ou tratar como OUTRO
